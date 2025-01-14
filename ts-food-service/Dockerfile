@@ -1,6 +1,8 @@
-FROM openjdk:8-jre
+FROM harbor.home.usableapps.io/proxy-docker.io/amazoncorretto:8-alpine-jre
 WORKDIR /app
-RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
+RUN apk add --no-cache tzdata && \
+    cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    echo 'Asia/Shanghai' > /etc/timezone
 COPY ./target/*.jar app.jar
 EXPOSE 8080
 CMD ["java", "-Xmx200m",  "-jar", "app.jar"]

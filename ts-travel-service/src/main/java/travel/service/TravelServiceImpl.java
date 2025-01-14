@@ -24,7 +24,7 @@ import travel.entity.Trip;
 import travel.entity.TripAllDetail;
 import travel.repository.TripRepository;
 
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.util.concurrent.*;
 

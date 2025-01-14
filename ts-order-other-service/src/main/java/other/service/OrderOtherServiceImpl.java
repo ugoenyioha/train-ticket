@@ -116,7 +116,7 @@ public class OrderOtherServiceImpl implements OrderOtherService {
     @Override
     public Response alterOrder(OrderAlterInfo oai, HttpHeaders headers) {
 
-        String oldOrderId = oai.getPreviousOrderId();
+        String oldOrderId = oai.getOrderId();
 
         if (!orderOtherRepository.findById(oldOrderId).isPresent()) {
             OrderOtherServiceImpl.LOGGER.error("[alterOrder][Alter Order Fail][Order do not exist][OrderId: {}]", oldOrderId);

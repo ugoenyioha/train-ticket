@@ -1,34 +1,25 @@
 package other.entity;
 
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import java.util.UUID;
-
-/**
- * @author fdse
- */
 @Data
-@AllArgsConstructor
-@GenericGenerator(name = "jpa-uuid", strategy = "org.hibernate.id.UUIDGenerator")
+@Entity
 public class OrderAlterInfo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private String id;
 
-    @GeneratedValue(generator = "jpa-uuid")
-    @Column(length = 36)
-    private String accountId;
+    @Column(name = "order_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String orderId;
 
-    @GeneratedValue(generator = "jpa-uuid")
-    @Column(length = 36)
-    private String previousOrderId;
+    @Column(name = "new_order_id")
+    private String newOrderId;
 
-    private String loginToken;
-
+    @Column(name = "new_order_info")
     private Order newOrderInfo;
 
-    public OrderAlterInfo(){
-        newOrderInfo = new Order();
-    }
+    // ... rest of the class
 }

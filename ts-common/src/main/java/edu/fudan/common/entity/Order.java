@@ -72,6 +72,7 @@ public class Order {
         differenceMoney ="0.0";
     }
 
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -83,21 +84,21 @@ public class Order {
             return false;
         }
         Order other = (Order) obj;
-        return getBoughtDate().equals(other.getBoughtDate())
-                && getBoughtDate().equals(other.getTravelDate())
-                && getTravelTime().equals(other.getTravelTime())
-                && accountId .equals( other.getAccountId() )
-                && contactsName.equals(other.getContactsName())
-                && contactsDocumentNumber.equals(other.getContactsDocumentNumber())
-                && documentType == other.getDocumentType()
-                && trainNumber.equals(other.getTrainNumber())
-                && coachNumber == other.getCoachNumber()
-                && seatClass == other.getSeatClass()
-                && seatNumber == other.getSeatNumber()
-                && from.equals(other.getFrom())
-                && to.equals(other.getTo())
-                && status == other.getStatus()
-                && price.equals(other.price);
+        return this.boughtDate.equals(other.boughtDate)
+                && this.boughtDate.equals(other.travelDate)
+                && this.travelTime.equals(other.travelTime)
+                && this.accountId.equals(other.accountId)
+                && this.contactsName.equals(other.contactsName)
+                && this.contactsDocumentNumber.equals(other.contactsDocumentNumber)
+                && this.documentType == other.documentType
+                && this.trainNumber.equals(other.trainNumber)
+                && this.coachNumber == other.coachNumber
+                && this.seatClass == other.seatClass
+                && this.seatNumber == other.seatNumber
+                && this.from.equals(other.from)
+                && this.to.equals(other.to)
+                && this.status == other.status
+                && this.price.equals(other.price);
     }
 
     @Override

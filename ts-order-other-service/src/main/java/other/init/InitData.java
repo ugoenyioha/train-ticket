@@ -32,7 +32,7 @@ public class InitData implements CommandLineRunner {
         order1.setContactsName("Test");
         order1.setDocumentType(1);
         order1.setFrom("shanghai");
-        order1.setId("4d2a46c7-71cb-4cf1-c5bb-b68406d9da6f");
+        order1.setId(UUID.fromString("4d2a46c7-71cb-4cf1-c5bb-b68406d9da6f"));
         order1.setPrice("100");
         order1.setSeatClass(SeatClass.FIRSTCLASS.getCode());
         order1.setSeatNumber(2);

@@ -14,14 +14,12 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @Entity
-@GenericGenerator(name = "jpa-uuid", strategy = "org.hibernate.id.UUIDGenerator")
 @Table(name="consign_price")
 public class ConsignPrice {
     @Id
-    @GeneratedValue(generator = "jpa-uuid")
     @Column(length = 36)
-    private String id;
-    @Column(name = "idx",unique = true)
+    private UUID id;
+    @Column(name = "idx")
     private int index;
     @Column(name = "initial_weight")
     private double initialWeight;

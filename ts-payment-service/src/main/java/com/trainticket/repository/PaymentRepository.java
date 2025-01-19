@@ -5,13 +5,14 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * @author fdse
  */
 public interface PaymentRepository extends CrudRepository<Payment,String> {
 
-    Optional<Payment> findById(String id);
+    Optional<Payment> findById(UUID id);
 
     Payment findByOrderId(String orderId);
 

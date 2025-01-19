@@ -16,13 +16,10 @@ import java.util.UUID;
  */
 @Data
 @Entity
-@GenericGenerator(name = "jpa-uuid", strategy = "org.hibernate.id.UUIDGenerator")
 public class Payment {
     @Id
     @NotNull
-    @Column(length = 36)
-    @GeneratedValue(generator = "jpa-uuid")
-    private String id;
+    private UUID id;
 
     @NotNull
     @Valid
@@ -40,7 +37,7 @@ public class Payment {
     private String price;
 
     public Payment(){
-        this.id = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID();
         this.orderId = "";
         this.userId = "";
         this.price = "";

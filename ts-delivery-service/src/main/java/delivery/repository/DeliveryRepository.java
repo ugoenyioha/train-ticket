@@ -14,7 +14,7 @@ import java.util.UUID;
 public interface DeliveryRepository extends CrudRepository<Delivery, String> {
 
 
-    Optional<Delivery> findById(String id);
+    Optional<Delivery> findById(UUID id);
 
     Delivery findByOrderId(UUID orderId);
 
@@ -23,6 +23,6 @@ public interface DeliveryRepository extends CrudRepository<Delivery, String> {
 
     void deleteById(String id);
 
-    void deleteFoodOrderByOrderId(String id);
+    void deleteFoodOrderByOrderId(UUID id);
 
 }

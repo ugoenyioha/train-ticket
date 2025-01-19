@@ -73,9 +73,10 @@ public class ConsignPriceServiceImpl implements ConsignPriceService {
             ConsignPriceServiceImpl.LOGGER.info("[createAndModifyPrice][Creating New Price Config]");
             originalConfig = new ConsignPrice();
             // 生成新 ID
-            originalConfig.setId(UUID.randomUUID().toString());
+            originalConfig.setId(UUID.randomUUID());
             // 查找最大索引
             Integer maxIndex = repository.findMaxIndex();
+            maxIndex = 1000;
             index = maxIndex + 1;
         } else {
             // 更新现有记录

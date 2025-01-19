@@ -9,7 +9,7 @@ import other.entity.QueryInfo;
 import other.entity.OrderAlterInfo;
 
 import java.util.Date;
-
+import java.util.UUID;
 /**
  * @author fdse
  */

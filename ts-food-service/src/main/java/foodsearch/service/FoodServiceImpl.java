@@ -73,7 +73,7 @@ public class FoodServiceImpl implements FoodService {
         List<String> deliveryJsons = new ArrayList<>();
         for (FoodOrder addFoodOrder : orders) {
             FoodOrder fo = new FoodOrder();
-            fo.setId(UUID.randomUUID().toString());
+            fo.setId(UUID.randomUUID());
             fo.setOrderId(addFoodOrder.getOrderId());
             fo.setFoodType(addFoodOrder.getFoodType());
             if (addFoodOrder.getFoodType() == 2) {
@@ -117,7 +117,7 @@ public class FoodServiceImpl implements FoodService {
             return new Response<>(0, "Order Id Has Existed.", null);
         } else {
             fo = new FoodOrder();
-            fo.setId(UUID.randomUUID().toString());
+            fo.setId(UUID.randomUUID());
             fo.setOrderId(addFoodOrder.getOrderId());
             fo.setFoodType(addFoodOrder.getFoodType());
             if (addFoodOrder.getFoodType() == 2) {

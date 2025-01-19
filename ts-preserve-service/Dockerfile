@@ -1,4 +1,4 @@
-FROM harbor.home.usableapps.io/proxy-docker.io/amazoncorretto:8-alpine-jre
+FROM harbor.home.usableapps.io/proxy-docker.io/amazoncorretto:23-alpine3.20
 WORKDIR /app
 RUN apk add --no-cache tzdata && \
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \

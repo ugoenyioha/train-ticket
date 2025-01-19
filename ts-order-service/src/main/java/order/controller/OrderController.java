@@ -12,7 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
-
+import java.util.UUID;
 import static org.springframework.http.ResponseEntity.ok;
 
 /**
@@ -82,7 +82,7 @@ public class OrderController {
     public HttpEntity getOrderPrice(@PathVariable String orderId, @RequestHeader HttpHeaders headers) {
         OrderController.LOGGER.info("[getOrderPrice][Get Order Price][OrderId: {}]", orderId);
         // String
-        return ok(orderService.getOrderPrice(orderId, headers));
+        return ok(orderService.getOrderPrice(UUID.fromString(orderId), headers));
     }
 
 
@@ -91,7 +91,7 @@ public class OrderController {
     public HttpEntity payOrder(@PathVariable String orderId, @RequestHeader HttpHeaders headers) {
         OrderController.LOGGER.info("[payOrder][Pay Order][OrderId: {}]", orderId);
         // Order
-        return ok(orderService.payOrder(orderId, headers));
+        return ok(orderService.payOrder(UUID.fromString(orderId), headers));
     }
 
     @CrossOrigin(origins = "*")
@@ -99,7 +99,7 @@ public class OrderController {
     public HttpEntity getOrderById(@PathVariable String orderId, @RequestHeader HttpHeaders headers) {
         OrderController.LOGGER.info("[getOrderById][Get Order By Id][OrderId: {}]", orderId);
         // Order
-        return ok(orderService.getOrderById(orderId, headers));
+        return ok(orderService.getOrderById(UUID.fromString(orderId), headers));
     }
 
     @CrossOrigin(origins = "*")
@@ -107,7 +107,7 @@ public class OrderController {
     public HttpEntity modifyOrder(@PathVariable String orderId, @PathVariable int status, @RequestHeader HttpHeaders headers) {
         OrderController.LOGGER.info("[modifyOrder][Modify Order Status][OrderId: {}]", orderId);
         // Order
-        return ok(orderService.modifyOrder(orderId, status, headers));
+        return ok(orderService.modifyOrder(UUID.fromString(orderId), status, headers));
     }
 
 
@@ -143,7 +143,7 @@ public class OrderController {
     public HttpEntity deleteOrder(@PathVariable String orderId, @RequestHeader HttpHeaders headers) {
         OrderController.LOGGER.info("[deleteOrder][Delete Order][OrderId: {}]", orderId);
         // Order
-        return ok(orderService.deleteOrder(orderId, headers));
+        return ok(orderService.deleteOrder(UUID.fromString(orderId), headers));
     }
 
     /***************For super admin(Single Service Test*******************/

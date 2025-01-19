@@ -26,7 +26,7 @@ public class InitData implements CommandLineRunner {
     @Override
     public void run(String... args)throws Exception{
         Order order = new Order();
-        order.setId("5ad7750b-a68b-49c0-a8c0-32776b067703");
+        order.setId(UUID.fromString("5ad7750b-a68b-49c0-a8c0-32776b067703"));
         order.setTravelDate("2022-10-01 00:00:00"); //NOSONAR
         order.setTravelTime("2022-10-01 00:00:00"); //NOSONAR
         order.setAccountId(accountId);
@@ -45,7 +45,7 @@ public class InitData implements CommandLineRunner {
 
 
         Order orderTwo = new Order();
-        orderTwo.setId("8177ac5a-61ac-42f4-83f4-bd7b394d0531");
+        orderTwo.setId(UUID.fromString("8177ac5a-61ac-42f4-83f4-bd7b394d0531"));
         orderTwo.setTravelDate("2022-10-01 00:00:00"); //NOSONAR
         orderTwo.setTravelTime("2022-10-01 00:00:00"); //NOSONAR
         orderTwo.setAccountId(accountId);
@@ -63,7 +63,7 @@ public class InitData implements CommandLineRunner {
         service.initOrder(orderTwo, null);
 
         Order orderThree = new Order();
-        orderThree.setId("d3c91694-d5b8-424c-9974-e14c89226e49");
+        orderThree.setId(UUID.fromString("d3c91694-d5b8-424c-9974-e14c89226e49"));
         orderThree.setTravelDate("2022-10-01 00:00:00"); //NOSONAR
         orderThree.setTravelTime("2022-10-01 00:00:00"); //NOSONAR
         orderThree.setAccountId(accountId);

@@ -22,7 +22,6 @@ public class NotificationController {
     @Autowired
     RabbitSend sender;
 
-    @Value("${test_send_mail_user}")
     String test_mail_user;
 
     @GetMapping(path = "/welcome")

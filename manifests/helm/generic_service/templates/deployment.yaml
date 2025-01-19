@@ -48,12 +48,12 @@ spec:
           resources:
             {{- toYaml $root.Values.resources | nindent 12 }}
           volumeMounts:
-            - name: localtime
-              mountPath: /etc/localtime
-              readOnly: true
-            - name: timezone
-              mountPath: /etc/timezone
-              readOnly: true
+            # - name: localtime
+            #   mountPath: /etc/localtime
+            #   readOnly: true
+            # - name: timezone
+            #   mountPath: /etc/timezone
+            #   readOnly: true
           {{- with $root.Values.global.monitoring }}
             {{- if eq $svc.lang "python" }}
           env:
@@ -171,14 +171,14 @@ spec:
             {{- end }}
           {{- end }}
       volumes:
-        - name: localtime
-          hostPath:
-            path: /etc/localtime
-            type: File
-        - name: timezone
-          hostPath:
-            path: /etc/timezone
-            type: File
+        # - name: localtime
+        #   hostPath:
+        #     path: /etc/localtime
+        #     type: File
+        # - name: timezone
+        #   hostPath:
+        #     path: /etc/timezone
+        #     type: File
         {{- if and (not $svc.lang) (eq $root.Values.global.monitoring "skywalking") (eq $root.Values.opentelemetry.enabled true) }}
         - name: skywalking-agent
           emptyDir: {}

@@ -13,16 +13,13 @@ import java.util.UUID;
  */
 @Data
 @AllArgsConstructor
-@GenericGenerator(name = "jpa-uuid", strategy = "org.hibernate.id.UUIDGenerator")
 public class OrderAlterInfo {
 
-    @GeneratedValue(generator = "jpa-uuid")
     @Column(length = 36)
     private String accountId;
 
-    @GeneratedValue(generator = "jpa-uuid")
     @Column(length = 36)
-    private String previousOrderId;
+    private UUID previousOrderId;
 
     private String loginToken;
 

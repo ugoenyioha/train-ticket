@@ -4,7 +4,7 @@ spring:
   application:
     name: ts-food-delivery-service
   datasource:
-#    url: jdbc:mysql://localhost:30001/ts-food-delivery-mysql?useSSL=false
+    #    url: jdbc:mysql://localhost:30001/ts-food-delivery-mysql?useSSL=false
     url: jdbc:mysql://${FOOD_DELIVERY_MYSQL_HOST:ts-food-delivery-mysql}:${FOOD_DELIVERY_MYSQL_PORT:3306}/${FOOD_DELIVERY_MYSQL_DATABASE:ts-food-delivery-mysql}?useSSL=false
     username: ${FOOD_DELIVERY_MYSQL_USER:root}
     password: ${FOOD_DELIVERY_MYSQL_PASSWORD:root}
@@ -14,7 +14,7 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+        dialect: org.hibernate.dialect.MySQLDialect
 
 swagger:
   controllerPackage: fooddelivery.controller

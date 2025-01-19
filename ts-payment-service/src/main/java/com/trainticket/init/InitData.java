@@ -9,7 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+import java.util.UUID;
 /**
  * @author fdse
  */
@@ -25,7 +25,7 @@ public class InitData implements CommandLineRunner {
     public void run(String... args) throws Exception{
 
         Payment payment = new Payment();
-        payment.setId("5ad7750ba68b49c0a8c035276b067701");
+        payment.setId(UUID.fromString("5ad7750b-a68b-49c0-a8c0-35276b067701"));
         payment.setOrderId("5ad7750b-a68b-49c0-a8c0-32776b067701");
         payment.setPrice("10000.0");
         payment.setUserId("4d2a46c7-71cb-4cf1-b5bb-b68406d9da6f");

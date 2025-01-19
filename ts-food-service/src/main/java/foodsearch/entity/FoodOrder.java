@@ -19,9 +19,7 @@ import java.util.UUID;
 public class FoodOrder {
 
     @Id
-    @GeneratedValue(generator = "jpa-uuid")
-    @Column(length = 36)
-    private String id;
+    private UUID id;
 
     private String orderId;
 

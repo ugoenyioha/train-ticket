@@ -32,18 +32,18 @@ spec:
       labels:
         app: mysql
     spec:
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: disk
-                operator: In
-                values:
-                - ssd
+      # affinity:
+      #   nodeAffinity:
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #       nodeSelectorTerms:
+      #       - matchExpressions:
+      #         - key: disk
+      #           operator: In
+      #           values:
+      #           - ssd
       containers:
       - name: mysql
-        image: mysql:5.7
+        image: mysql:9
         command: ["/bin/sh"]
         args: ["-c", "ulimit -n 10240 && docker-entrypoint.sh mysqld"]
         env:

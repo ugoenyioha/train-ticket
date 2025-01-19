@@ -1,12 +1,12 @@
 # HTTP Server
 server:
-  port: 8080  # HTTP (Tomcat) port
+  port: 8080 # HTTP (Tomcat) port
 
 spring:
   application:
     name: ts-order-other-service
   datasource:
-#    url: jdbc:mysql://localhost:3306/ts-order-other-mysql?useSSL=false
+    #    url: jdbc:mysql://localhost:3306/ts-order-other-mysql?useSSL=false
     url: jdbc:mysql://${ORDER_OTHER_MYSQL_HOST:ts-order-other-mysql}:${ORDER_OTHER_MYSQL_PORT:3306}/${ORDER_OTHER_MYSQL_DATABASE:ts-order-other-mysql}?useSSL=false
     username: ${ORDER_OTHER_MYSQL_USER:root}
     password: ${ORDER_OTHER_MYSQL_PASSWORD:root}
@@ -16,8 +16,8 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
-#    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        dialect: org.hibernate.dialect.MySQLDialect
+        #    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
 
 #  rabbitmq:

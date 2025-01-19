@@ -169,11 +169,11 @@ services:
 
 resources:
   requests:
-    cpu: 2
+    cpu: 1
     memory: 2Gi
   limits:
-    cpu: 4
-    memory: 4Gi
+    cpu: 2
+    memory: 2Gi
 
 skywalking-helm:
   oap:
@@ -187,11 +187,11 @@ skywalking-helm:
     javaOpts: -Xmx2g -Xms2g
     resources:
       limits:
-        cpu: 4
-        memory: 8Gi
-      requests:
-        cpu: 4
+        cpu: 2
         memory: 4Gi
+      requests:
+        cpu: 2
+        memory: 2Gi
     livenessProbe:
       tcpSocket:
         port: 12800
@@ -209,7 +209,7 @@ skywalking-helm:
     enabled: false
 
   postgresql:
-    enabled: false # Whether to start a demo postgresql deployment, don't use this for production.
+    enabled: true # Whether to start a demo postgresql deployment, don't use this for production.
     config:
       # The hostname of your own postgresql service, this only takes effect when postgresql.enabled is false.
       host: ts-postgresql # note: change the name to your corresponding name !!!!!!

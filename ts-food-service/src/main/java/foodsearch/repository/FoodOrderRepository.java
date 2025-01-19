@@ -12,7 +12,7 @@ import java.util.UUID;
 @Repository
 public interface FoodOrderRepository extends CrudRepository<FoodOrder, String> {
 
-    Optional<FoodOrder> findById(String id);
+    Optional<FoodOrder> findById(UUID id);
 
     FoodOrder findByOrderId(String orderId);
 

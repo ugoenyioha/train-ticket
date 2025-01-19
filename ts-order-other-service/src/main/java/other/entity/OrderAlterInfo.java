@@ -1,25 +1,33 @@
 package other.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import java.util.UUID;
 
 @Data
+@AllArgsConstructor
 @Entity
 public class OrderAlterInfo {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private String id;
+    @Column(length = 36)
+    private String accountId;
 
-    @Column(name = "order_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String orderId;
+    @Column(length = 36)
+    private String previousOrderId;
 
-    @Column(name = "new_order_id")
-    private String newOrderId;
+    private String loginToken;
 
-    @Column(name = "new_order_info")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "new_order_id")
     private Order newOrderInfo;
 
-    // ... rest of the class
+    public OrderAlterInfo(){
+        newOrderInfo = new Order();
+    }
+
+    public String getOrderId(){
+        return previousOrderId;
+    }
 }

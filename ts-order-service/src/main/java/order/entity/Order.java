@@ -10,7 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.*;
 import java.util.Date;
-
+import java.util.UUID;
 import edu.fudan.common.entity.SeatClass;
 
 /**
@@ -19,15 +19,12 @@ import edu.fudan.common.entity.SeatClass;
 @Data
 @Table(name = "orders")
 @Entity
-@GenericGenerator(name = "jpa-uuid", strategy = "org.hibernate.id.UUIDGenerator")
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Order {
 
     @Id
-    @Column(length = 36)
-    @GeneratedValue(generator = "jpa-uuid")
-    private String id;
+    private UUID id;
 
     private String boughtDate;
 

@@ -2,12 +2,13 @@ package auth.security.jwt;
 
 import auth.constant.InfoConstant;
 import auth.entity.User;
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
 import jakarta.annotation.PostConstruct;
+import java.security.Key;
 import java.util.Base64;
 import java.util.Date;
 
@@ -17,29 +18,30 @@ import java.util.Date;
 @Component
 public class JWTProvider {
 
-    private String secretKey = "secret";
+    // This is just an example key - in production, this should be externalized to a config file
+    private String secretKey = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
+
+    private Key key;
 
     private long validityInMilliseconds = 3600000;
 
     @PostConstruct
     protected void init() {
-        secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
+        byte[] keyBytes = Decoders.BASE64URL.decode(secretKey);
+        key = Keys.hmacShaKeyFor(keyBytes);
     }
 
     public String createToken(User user) {
-
-        Claims claims = Jwts.claims().setSubject(user.getUsername());
-        claims.put(InfoConstant.ROLES, user.getRoles());
-        claims.put(InfoConstant.ID, user.getUserId());
-
         Date now = new Date();
         Date validate = new Date(now.getTime() + validityInMilliseconds);
 
         return Jwts.builder()
-                .setClaims(claims)
-                .setIssuedAt(now)
-                .setExpiration(validate)
-                .signWith(SignatureAlgorithm.HS256, secretKey)
+                .subject(user.getUsername())
+                .claim(InfoConstant.ROLES, user.getRoles())
+                .claim(InfoConstant.ID, user.getUserId())
+                .issuedAt(now)
+                .expiration(validate)
+                .signWith(key)
                 .compact();
     }
 }

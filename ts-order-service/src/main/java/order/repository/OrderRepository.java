@@ -13,10 +13,10 @@ import java.util.UUID;
  * @author fdse
  */
 @Repository
-public interface OrderRepository extends JpaRepository<Order, UUID> {
+public interface OrderRepository extends JpaRepository<Order, String> {
 
     @Override
-    Optional<Order> findById(UUID id);
+    Optional<Order> findById(String id);
 
     @Override
     ArrayList<Order> findAll();
@@ -26,5 +26,5 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
     ArrayList<Order> findByTravelDateAndTrainNumber(String travelDate,String trainNumber);
 
     @Override
-    void deleteById(UUID id);
+    void deleteById(String id);
 }

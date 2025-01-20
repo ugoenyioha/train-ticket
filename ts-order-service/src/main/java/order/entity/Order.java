@@ -24,7 +24,7 @@ import edu.fudan.common.entity.SeatClass;
 public class Order {
 
     @Id
-    private UUID id;
+    private String id;
 
     private String boughtDate;
 

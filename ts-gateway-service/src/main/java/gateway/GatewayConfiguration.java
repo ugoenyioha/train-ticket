@@ -20,9 +20,15 @@ import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import org.springframework.web.reactive.result.view.ViewResolver;
-
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Mono;
+import java.util.logging.Logger;
 import jakarta.annotation.PostConstruct;
 import java.util.*;
+
 
 /**
  * 网关配置类
@@ -106,11 +112,14 @@ public class GatewayConfiguration {
             String queryParams = request.getQueryParams().toString();
 
             // 打印请求路径和查询参数
-            System.out.println("Request Path: " + requestPath);
-            System.out.println("Query Params: " + queryParams);
+            Logger logger = Logger.getLogger(GatewayConfiguration.class.getName());
+            logger.info("Request Path: " + requestPath);
+            logger.info("Query Params: " + queryParams);
 
             // 为了不影响请求的正常处理，确保继续调用过滤器链
-            return chain.filter(exchange);
+            return chain.filter(exchange).then(Mono.fromRunnable(() -> {
+                logger.info("Response Status: " + exchange.getResponse().getStatusCode());
+            }));
         };
     }
     /**

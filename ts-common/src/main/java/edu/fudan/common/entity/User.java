@@ -16,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    private UUID userId;
+    private String userId;
     private String userName;
     private String password;
 

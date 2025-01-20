@@ -25,7 +25,7 @@ public class InitData implements CommandLineRunner {
     public void run(String... args) throws Exception{
 
         Payment payment = new Payment();
-        payment.setId(UUID.fromString("5ad7750b-a68b-49c0-a8c0-35276b067701"));
+        payment.setId(UUID.fromString("5ad7750b-a68b-49c0-a8c0-35276b067701").toString());
         payment.setOrderId("5ad7750b-a68b-49c0-a8c0-32776b067701");
         payment.setPrice("10000.0");
         payment.setUserId("4d2a46c7-71cb-4cf1-b5bb-b68406d9da6f");

@@ -20,7 +20,7 @@ import java.util.UUID;
 @Entity
 public class Money {
     @Id
-    private UUID id;
+    private String id;
 
     @Column(length = 36)
     private String userId;

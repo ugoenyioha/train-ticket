@@ -19,7 +19,7 @@ import java.util.UUID;
 public class Payment {
     @Id
     @NotNull
-    private UUID id;
+    private String id;
 
     @NotNull
     @Valid
@@ -37,7 +37,7 @@ public class Payment {
     private String price;
 
     public Payment(){
-        this.id = UUID.randomUUID();
+        this.id = UUID.randomUUID().toString();
         this.orderId = "";
         this.userId = "";
         this.price = "";

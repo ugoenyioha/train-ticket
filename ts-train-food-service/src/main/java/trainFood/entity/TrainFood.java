@@ -21,7 +21,7 @@ import java.util.UUID;
 public class TrainFood {
 
     @Id
-    private UUID id;
+    private String id;
 
     @NotNull
     @Column(unique = true)

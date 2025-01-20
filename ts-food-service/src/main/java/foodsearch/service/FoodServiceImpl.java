@@ -73,7 +73,7 @@ public class FoodServiceImpl implements FoodService {
         List<String> deliveryJsons = new ArrayList<>();
         for (FoodOrder addFoodOrder : orders) {
             FoodOrder fo = new FoodOrder();
-            fo.setId(UUID.randomUUID());
+            fo.setId(UUID.randomUUID().toString());
             fo.setOrderId(addFoodOrder.getOrderId());
             fo.setFoodType(addFoodOrder.getFoodType());
             if (addFoodOrder.getFoodType() == 2) {
@@ -87,7 +87,7 @@ public class FoodServiceImpl implements FoodService {
 
             Delivery delivery = new Delivery();
             delivery.setFoodName(newAddFoodOrder.getFoodName());
-            delivery.setOrderId(UUID.fromString(newAddFoodOrder.getOrderId()));
+            delivery.setOrderId(UUID.fromString(newAddFoodOrder.getOrderId()).toString());
             delivery.setStationName(newAddFoodOrder.getStationName());
             delivery.setStoreName(newAddFoodOrder.getStoreName());
 
@@ -117,7 +117,7 @@ public class FoodServiceImpl implements FoodService {
             return new Response<>(0, "Order Id Has Existed.", null);
         } else {
             fo = new FoodOrder();
-            fo.setId(UUID.randomUUID());
+            fo.setId(UUID.randomUUID().toString());
             fo.setOrderId(addFoodOrder.getOrderId());
             fo.setFoodType(addFoodOrder.getFoodType());
             if (addFoodOrder.getFoodType() == 2) {
@@ -131,7 +131,7 @@ public class FoodServiceImpl implements FoodService {
 
             Delivery delivery = new Delivery();
             delivery.setFoodName(addFoodOrder.getFoodName());
-            delivery.setOrderId(UUID.fromString(addFoodOrder.getOrderId()));
+            delivery.setOrderId(UUID.fromString(addFoodOrder.getOrderId()).toString());
             delivery.setStationName(addFoodOrder.getStationName());
             delivery.setStoreName(addFoodOrder.getStoreName());
 

@@ -19,7 +19,7 @@ public class OrderAlterInfo {
     private String accountId;
 
     @Column(length = 36)
-    private UUID previousOrderId;
+    private String previousOrderId;
 
     private String loginToken;
 

@@ -23,9 +23,9 @@ public class Delivery {
     }
 
     @Id
-    private UUID id;
+    private String id;
 
-    private UUID orderId;
+    private String orderId;
     private String foodName;
     private String storeName;
     private String stationName;

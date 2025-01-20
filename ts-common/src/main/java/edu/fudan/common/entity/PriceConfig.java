@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class PriceConfig {
 
-    private UUID id;
+    private String id;
 
     private String trainType;
 

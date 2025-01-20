@@ -12,14 +12,14 @@ import java.util.UUID;
 @Repository
 public interface FoodOrderRepository extends CrudRepository<FoodOrder, String> {
 
-    Optional<FoodOrder> findById(UUID id);
+    Optional<FoodOrder> findById(String id);
 
     FoodOrder findByOrderId(String orderId);
 
     @Override
     List<FoodOrder> findAll();
 
-    void deleteById(UUID id);
+    void deleteById(String id);
 
     void deleteFoodOrderByOrderId(String id);
 

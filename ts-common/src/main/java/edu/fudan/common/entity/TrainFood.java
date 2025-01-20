@@ -13,7 +13,7 @@ public class TrainFood implements Serializable{
         //Default Constructor
     }
 
-    private UUID id;
+    private String id;
 
     private String tripId;
 

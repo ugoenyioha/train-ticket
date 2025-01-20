@@ -21,7 +21,7 @@ import java.util.UUID;
 @Entity
 public class User {
 
-    //    private UUID userId;
+    //    private String userId;
     @Id
     @Column(length = 36, name = "user_id")
     private String userId;

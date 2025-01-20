@@ -1,6 +1,9 @@
 FROM harbor.home.usableapps.io/proxy-docker.io/amazoncorretto:23-alpine3.20
 WORKDIR /app
-RUN apk add --no-cache tzdata && \
+RUN apk add --no-cache \
+    tzdata \
+    fontconfig \
+    ttf-dejavu && \
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     echo 'Asia/Shanghai' > /etc/timezone
 COPY ./target/*.jar app.jar

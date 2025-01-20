@@ -38,7 +38,7 @@ public class FoodController {
     public boolean test_send_delivery() {
         Delivery delivery = new Delivery();
         delivery.setFoodName("HotPot");
-        delivery.setOrderId(UUID.randomUUID());
+        delivery.setOrderId(UUID.randomUUID().toString());
         delivery.setStationName("Shang Hai");
         delivery.setStoreName("MiaoTing Instant-Boiled Mutton");
 

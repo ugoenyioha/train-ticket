@@ -7,6 +7,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import edu.fudan.common.security.jwt.JWTFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -14,18 +17,32 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http
+            .csrf().disable()
+            .httpBasic().disable()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/v1/adminbasicservice/adminbasic/stations").permitAll()
-                .requestMatchers("/api/v1/adminbasicservice/adminbasic/trains").permitAll()
-                .requestMatchers("/api/v1/adminbasicservice/adminbasic/prices").permitAll()
-                .requestMatchers("/api/v1/adminbasicservice/adminbasic/configs").permitAll()
-                .requestMatchers("/api/v1/adminbasicservice/adminbasic/contacts").permitAll()
+                .requestMatchers(
+                    "/api/v1/adminbasicservice/adminbasic/stations",
+                    "/api/v1/adminbasicservice/adminbasic/trains",
+                    "/api/v1/adminbasicservice/adminbasic/prices",
+                    "/api/v1/adminbasicservice/adminbasic/configs",
+                    "/api/v1/adminbasicservice/adminbasic/contacts"
+                ).permitAll()
                 .requestMatchers("/api/v1/adminbasicservice/**").hasRole("ADMIN")
-                .requestMatchers("/swagger-ui.html", "/webjars/**", "/images/**",
-                        "/configuration/**", "/swagger-resources/**", "/v2/**").permitAll()
+                .requestMatchers(
+                    "/swagger-ui.html",
+                    "/webjars/**",
+                    "/images/**",
+                    "/configuration/**",
+                    "/swagger-resources/**",
+                    "/v2/**"
+                ).permitAll()
                 .anyRequest().authenticated()
-            );
+            )
+            .addFilterBefore(new JWTFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.headers().cacheControl();
         return http.build();
     }
 
@@ -35,9 +52,10 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("*")
+                        .allowedOrigins("http://localhost:33117", "http://localhost:55117", "https://train-ticket.home.usableapps.io")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
-                        .allowCredentials(true)
+                        .allowedHeaders("*")
+                        .allowCredentials(false)
                         .maxAge(3600);
             }
         };

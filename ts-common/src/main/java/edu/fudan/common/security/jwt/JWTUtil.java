@@ -2,6 +2,9 @@ package edu.fudan.common.security.jwt;
 
 import edu.fudan.common.exception.TokenException;
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
+import io.jsonwebtoken.io.Decoders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,13 +31,11 @@ public class JWTUtil {
     }
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JWTUtil.class);
-    private static String secretKey = Base64.getEncoder().encodeToString("secret".getBytes());
-
+    private static final String secretKey = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
 
     public static Authentication getJWTAuthentication(ServletRequest request) {
         String token = getTokenFromHeader((HttpServletRequest) request);
         if (token != null && validateToken(token)) {
-
             UserDetails userDetails = new UserDetails() {
                 @Override
                 public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -78,18 +79,18 @@ public class JWTUtil {
     }
 
     private static String getUserName(String token) {
-        return getClaims(token).getBody().getSubject();
+        return getClaims(token).getPayload().getSubject();
     }
 
     private static List<String> getRole(String token) {
         Jws<Claims> claimsJws = getClaims(token);
-        return (List<String>) (claimsJws.getBody().get("roles", List.class));
+        return (List<String>) (claimsJws.getPayload().get("roles", List.class));
     }
 
     private static String getTokenFromHeader(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7, bearerToken.length());
+            return bearerToken.substring(7);
         }
         return null;
     }
@@ -97,7 +98,7 @@ public class JWTUtil {
     private static boolean validateToken(String token) {
         try {
             Jws<Claims> claimsJws = getClaims(token);
-            return !claimsJws.getBody().getExpiration().before(new Date());
+            return !claimsJws.getPayload().getExpiration().before(new Date());
         } catch (ExpiredJwtException e) {
             LOGGER.error("[validateToken][getClaims][Token expired][ExpiredJwtException: {} ]" , e);
             throw new TokenException("Token expired");
@@ -117,7 +118,10 @@ public class JWTUtil {
     }
 
     private static Jws<Claims> getClaims(String token) {
-        return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+        byte[] keyBytes = Decoders.BASE64URL.decode(secretKey);
+        return Jwts.parser()
+            .verifyWith(Keys.hmacShaKeyFor(keyBytes))
+            .build()
+            .parseSignedClaims(token);
     }
-
 }

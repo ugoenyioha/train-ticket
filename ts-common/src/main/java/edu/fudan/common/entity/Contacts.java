@@ -16,9 +16,9 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Contacts {
 
-    private UUID id;
+    private String id;
 
-    private UUID accountId;
+    private String accountId;
 
     private String name;
 

@@ -12,7 +12,7 @@ import java.util.UUID;
  */
 public interface PaymentRepository extends CrudRepository<Payment,String> {
 
-    Optional<Payment> findById(UUID id);
+    Optional<Payment> findById(String id);
 
     Payment findByOrderId(String orderId);
 

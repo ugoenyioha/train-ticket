@@ -22,7 +22,7 @@ import java.util.UUID;
 public class Order {
     @Id
     @Column(length = 36)
-    private UUID id;
+    private String id;
 
     private String boughtDate;
 

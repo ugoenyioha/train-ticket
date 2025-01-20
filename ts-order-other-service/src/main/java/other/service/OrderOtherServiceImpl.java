@@ -126,7 +126,7 @@ public class OrderOtherServiceImpl implements OrderOtherService {
         oldOrder.setStatus(OrderStatus.CANCEL.getCode());
         saveChanges(oldOrder, headers);
         Order newOrder = oai.getNewOrderInfo();
-        newOrder.setId(UUID.randomUUID());
+        newOrder.setId(UUID.randomUUID().toString());
         Response cor = create(oai.getNewOrderInfo(), headers);
         if (cor.getStatus() == 1) {
             OrderOtherServiceImpl.LOGGER.info("[alterOrder][Alter Order Success][newOrderId:{}]",newOrder.getId());

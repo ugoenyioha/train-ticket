@@ -18,7 +18,7 @@ import java.util.UUID;
 public class ConsignPrice {
     @Id
     @Column(length = 36)
-    private UUID id;
+    private String id;
     @Column(name = "idx")
     private int index;
     @Column(name = "initial_weight")

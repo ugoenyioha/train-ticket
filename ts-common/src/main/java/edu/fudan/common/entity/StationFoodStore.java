@@ -9,7 +9,7 @@ import java.util.UUID;
 @Data
 public class StationFoodStore implements Serializable{
 
-    private UUID id;
+    private String id;
 
     private String stationName;
 

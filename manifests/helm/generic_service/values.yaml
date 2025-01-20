@@ -153,6 +153,23 @@ services:
     type: NodePort
     nodePort: 30080
     lang: frontend
+    ingress:
+      enabled: true
+      className: "cilium"
+      annotations:
+        external-dns.alpha.kubernetes.io/hostname: train-ticket.home.usableapps.io
+        acme.cert-manager.io/dns01-edit-in-place: "true"
+        cert-manager.io/private-key-algorithm: ECDSA
+        cert-manager.io/common-name: train-ticket.home.usableapps.io
+        cert-manager.io/cluster-issuer: talos-vault-issuer
+      labels:
+        srm-home-dns-server-target: "true"
+      host: "train-ticket.home.usableapps.io"
+      path: /
+      pathType: Prefix
+      tls:
+        enabled: true
+        secretName: "train-ticket-tls"
   tsUserService:
     name: ts-user-service
     secretRef: ts-user-service
